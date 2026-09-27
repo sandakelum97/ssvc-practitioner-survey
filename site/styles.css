@@ -141,6 +141,8 @@ fieldset.scale legend { font-weight: 600; margin-bottom: 0.4rem; padding: 0; fon
 .options label:hover span { border-color: var(--muted); }
 .options input:checked + span { border: 2px solid var(--accent); background: var(--accent-soft); font-weight: 600; }
 .options input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+fieldset.scale.missing legend { color: var(--danger); }
+fieldset.scale.missing .options span { border-color: var(--danger); }
 
 /* ------------------------------------------------------------- dashboard */
 #screen-item { margin: -1.5rem -1.25rem -3rem; }

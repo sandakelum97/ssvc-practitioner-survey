@@ -58,6 +58,24 @@
 
   function showError(id, msg) { var e = $(id); e.textContent = msg; e.hidden = !msg; }
 
+  // Outlines every unanswered question and returns a message naming them.
+  function missingMessage(form) {
+    var names = [], sets = form.querySelectorAll("fieldset.scale");
+    Array.prototype.forEach.call(sets, function (fs) {
+      var answered = !!fs.querySelector("input[type=radio]:checked");
+      fs.classList.toggle("missing", !answered);
+      if (!answered) names.push(fs.querySelector("legend").textContent.trim());
+    });
+    if (!names.length) return "";
+    var first = form.querySelector("fieldset.missing input");
+    if (first) first.focus();
+    var list = names.join("; ");
+    return (names.length === 1 ? "Still to answer: " : "Still to answer (" + names.length + "): ") + list + (/[?.]$/.test(list) ? "" : ".");
+  }
+  function clearMissing(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("fieldset.missing"), function (fs) { fs.classList.remove("missing"); });
+  }
+
   // ----------------------------------------------------------- database
   // Insert-only. "Prefer: return=minimal" because the public role may not
   // read rows back. 201 = saved; 409 = this row was already saved earlier
@@ -298,6 +316,7 @@
     $("progress-fill").style.width = ((pos - 1) / ORDER.N_ITEMS * 100) + "%";
     renderRecord(s);
     $("form-item").reset();
+    clearMissing($("form-item"));
     showError("item-error", "");
     $("btn-item").textContent = pos === ORDER.N_ITEMS ? "Save and finish" : "Save and continue";
     show("item");
@@ -343,8 +362,9 @@
     ev.preventDefault();
     var f = ev.target, a = formValues(f);
     if (!a.years_band || !a.role_band || !a.works_at_mssp || !a.used_ssvc_before) {
-      return showError("about-error", "Answer all four questions to continue.");
+      return showError("about-error", missingMessage(f));
     }
+    clearMissing(f);
     showError("about-error", "");
     busy(f, true);
     insert("screening", {
@@ -355,6 +375,11 @@
     }).catch(function (e) {
       showError("about-error", saveErrorText(e));
     }).then(function () { busy(f, false); });
+  });
+
+  document.addEventListener("change", function (ev) {
+    var fs = ev.target.closest && ev.target.closest("fieldset.missing");
+    if (fs) fs.classList.remove("missing");
   });
 
   $("btn-exit").addEventListener("click", function () {
@@ -377,8 +402,9 @@
     ev.preventDefault();
     var f = ev.target, r = formValues(f);
     if (!r.system_exposure || !r.human_impact || !r.action || !r.confidence) {
-      return showError("item-error", "Answer all four questions to continue.");
+      return showError("item-error", missingMessage(f));
     }
+    clearMissing(f);
     showError("item-error", "");
     var pos = state.next;
     busy(f, true);
