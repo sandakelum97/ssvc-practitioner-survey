@@ -9,181 +9,240 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="masthead">
-  <div class="masthead-inner">
-    <p class="study">Practitioner survey on vulnerability prioritisation</p>
-    <div class="progress" id="progress" hidden>
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-      <p class="progress-text" id="progress-text"></p>
-    </div>
+
+<!-- Icon set (inline, no external requests) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-org" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16M4 21h16M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></symbol>
+  <symbol id="i-asset" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5l-5.5 5.5M12 11.5l5.5 5.5"/></symbol>
+  <symbol id="i-soft" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></symbol>
+  <symbol id="i-vuln" viewBox="0 0 24 24"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.5h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 013 3v13a2 2 0 00-2-2H4zM20 4h-6a3 3 0 00-3 3v13a2 2 0 012-2h7z"/></symbol>
+  <symbol id="i-exit" viewBox="0 0 24 24"><path d="M14 4h5a1 1 0 011 1v14a1 1 0 01-1 1h-5M10 16l-4-4 4-4M6 12h10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-anon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7M3 3l18 18"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 013 0V11M11 10V4.5a1.5 1.5 0 013 0V11M14 10.5V6a1.5 1.5 0 013 0v7c0 4.5-3 8-7 8-3 0-4.5-1.5-6-4l-2-3.5a1.5 1.5 0 012.5-1.6L8 14"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="ico brand-ico"><use href="#i-shield"/></svg>
+    <span>Practitioner survey on vulnerability prioritisation</span>
   </div>
+  <div class="progress" id="progress" hidden>
+    <span class="progress-text" id="progress-text"></span>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+  <button type="button" class="ghost" id="btn-exit" hidden><svg class="ico"><use href="#i-exit"/></svg><span>Save and exit</span></button>
 </header>
 
 <main id="main" tabindex="-1">
 
-<!-- Shown only if config.js or the definitions still hold placeholders -->
 <section class="screen" id="screen-setup" hidden>
-  <h1>This survey is not open yet</h1>
-  <p>The page is missing settings. If you are the researcher, fill in:</p>
-  <ul id="setup-missing"></ul>
+  <div class="narrow card">
+    <h1>This survey is not open yet</h1>
+    <p>The page is missing settings. If you are the researcher, fill in:</p>
+    <ul id="setup-missing"></ul>
+  </div>
 </section>
 
 <section class="screen" id="screen-loading">
-  <p>Loading the survey…</p>
+  <p class="narrow">Loading the survey…</p>
 </section>
 
-<!-- 1. Consent -->
+<!-- 1. Welcome and consent -->
 <section class="screen" id="screen-consent" hidden>
-  <h1>How practitioners prioritise vulnerabilities</h1>
-  <p class="lede">You will read 23 short scenarios, each an asset in an organisation with a vulnerability on it, and say how you would judge it. It takes about <span data-config="MINUTES"></span> minutes.</p>
+  <div class="narrow">
+    <h1 class="hero">How would you prioritise these vulnerabilities?</h1>
+    <p class="lede">Organisations can't fix every vulnerability at once. This research tests whether the environment facts SSVC needs can be worked out automatically. Your professional judgement is the benchmark, and there are no right or wrong answers.</p>
 
-  <h2>Why this survey is being done</h2>
-  <p>Organisations cannot fix every vulnerability at once, so they decide which to fix first. SSVC (Stakeholder-Specific Vulnerability Categorization), a method from the CERT Coordination Center, makes that decision partly from facts about the organisation's own environment: how exposed the system is, and how much harm its failure would cause. Today those facts are usually filled in by hand.</p>
-  <p>This research asks whether they can be worked out automatically, from data a managed security provider already holds. To judge that fairly, it needs to know what experienced practitioners would decide in the same situations. Your ratings are that benchmark. There are no right or wrong answers; your professional judgement is what counts.</p>
-  <p>The organisations and assets in the scenarios are fictional, built to resemble real sectors. The vulnerabilities are real, published ones, described as they were known at the time.</p>
+    <div class="tiles">
+      <div class="tile"><svg class="ico tile-ico"><use href="#i-clock"/></svg><div><strong>About <span data-config="MINUTES"></span> minutes</strong><span>23 short scenarios</span></div></div>
+      <div class="tile"><svg class="ico tile-ico"><use href="#i-anon"/></svg><div><strong>Anonymous</strong><span>No name, email or employer asked</span></div></div>
+      <div class="tile"><svg class="ico tile-ico"><use href="#i-hand"/></svg><div><strong>Voluntary</strong><span>Stop any time, or save and finish later</span></div></div>
+    </div>
 
-  <h2>Who is doing it</h2>
-  <p>This survey is part of a master's thesis by <span data-config="RESEARCHER"></span> (<span data-config="PROGRAMME"></span>), supervised by <span data-config="SUPERVISOR"></span>.</p>
+    <div class="card">
+      <h2>What happens to your answers</h2>
+      <ul class="facts-list">
+        <li><svg class="ico"><use href="#i-lock"/></svg><span>Stored in a Supabase database in <span data-config="DATA_REGION"></span>. Only the researcher can read them, and only summaries are published.</span></li>
+        <li><svg class="ico"><use href="#i-eye"/></svg><span>No cookies, analytics or tracking. The hosting services keep standard technical logs, which include IP addresses.</span></li>
+        <li><svg class="ico"><use href="#i-clock"/></svg><span>Raw answers are deleted by <span data-config="DELETE_RAW_BY"></span>.</span></li>
+        <li><svg class="ico"><use href="#i-exit"/></svg><span>Changed your mind? Email your completion code to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span> and your answers are deleted.</span></li>
+      </ul>
+      <details class="more">
+        <summary>Full details</summary>
+        <p><strong>Who.</strong> A master's thesis by <span data-config="RESEARCHER"></span> (<span data-config="PROGRAMME"></span>), supervised by <span data-config="SUPERVISOR"></span>.</p>
+        <p><strong>Why.</strong> SSVC (Stakeholder-Specific Vulnerability Categorization), from the CERT Coordination Center, decides patch priority partly from facts about the organisation's own environment, such as how exposed a system is and how much harm its failure would cause. These are usually filled in by hand. The research asks whether they can be derived from data a managed security provider already holds, and compares that with what experienced practitioners decide.</p>
+        <p><strong>The scenarios.</strong> The organisations and assets are fictional, built to resemble real sectors. The vulnerabilities are real, published ones, described as they were known at the time.</p>
+        <p><strong>What is collected.</strong> Four answers about your experience (years in the field, role, whether you work at an MSSP, whether you have used SSVC), your ratings for each scenario, and the time each answer was saved. There are no free-text boxes.</p>
+        <p><strong>Where.</strong> The database is hosted by Supabase in <span data-config="DATA_REGION"></span>; the page is hosted by Vercel. Both keep technical request logs, including IP addresses, under their own privacy policies (<a href="https://supabase.com/privacy" rel="noopener noreferrer">Supabase</a>, <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">Vercel</a>). The researcher does not collect or use IP addresses. Your browser keeps your place in the survey on this device only, so you can reload or come back later.</p>
+        <p><strong>Reporting.</strong> Results are reported as summaries. No group smaller than five people is reported by its background answers. Raw answers are deleted by <span data-config="DELETE_RAW_BY"></span>; summary results remain in the thesis.</p>
+        <p><strong>Withdrawing.</strong> Because nothing identifies you, the completion code is the only way to find your answers. Email it to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span>.</p>
+      </details>
+    </div>
 
-  <h2>What is collected</h2>
-  <ul>
-    <li>Four answers about your experience: years in the field, role, whether you work at an MSSP, and whether you have used SSVC.</li>
-    <li>Your ratings for each scenario, and the time each answer was saved.</li>
-  </ul>
-  <p>Your name, email address and employer are not asked for, and there are no free-text boxes. This page sets no cookies and uses no analytics or tracking.</p>
-
-  <h2>How it is stored</h2>
-  <ul>
-    <li>Answers are stored in a database hosted by Supabase in <span data-config="DATA_REGION"></span>. The page is hosted by Vercel. Like any web service, both keep technical request logs, which include IP addresses, under their own privacy policies (<a href="https://supabase.com/privacy" rel="noopener noreferrer">Supabase</a>, <a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer">Vercel</a>). The researcher does not collect or use IP addresses.</li>
-    <li>Your browser keeps your place in the survey on this device only, so you can reload the page without losing progress. Nothing else is stored in your browser.</li>
-    <li>Only the researcher can read the answers. Results are reported as summaries, and no group smaller than five people is reported by its background answers.</li>
-    <li>The raw answers are deleted by <span data-config="DELETE_RAW_BY"></span>. Summary results remain in the thesis.</li>
-  </ul>
-
-  <h2>Taking part is voluntary</h2>
-  <p>You can stop at any time by closing the page. At the end you will receive a completion code. If you email that code to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span>, your answers will be deleted. Because nothing identifies you, the code is the only way to find your answers. Questions are welcome at the same address.</p>
-
-  <form id="form-consent" class="panel" novalidate>
-    <label class="check"><input type="checkbox" name="read" required> I have read the information above.</label>
-    <label class="check"><input type="checkbox" name="adult" required> I am 18 or over.</label>
-    <label class="check"><input type="checkbox" name="agree" required> I agree to take part.</label>
-    <p class="form-error" id="consent-error" role="alert" hidden></p>
-    <button type="submit" class="primary">Start the survey</button>
-  </form>
+    <form id="form-consent" class="card consent" novalidate>
+      <label class="check"><input type="checkbox" name="read" required> I have read the information above.</label>
+      <label class="check"><input type="checkbox" name="adult" required> I am 18 or over.</label>
+      <label class="check"><input type="checkbox" name="agree" required> I agree to take part.</label>
+      <p class="form-error" id="consent-error" role="alert" hidden></p>
+      <button type="submit" class="primary">Start the survey</button>
+    </form>
+  </div>
 </section>
 
 <!-- 2. About you -->
 <section class="screen" id="screen-about" hidden>
-  <h1>About you</h1>
-  <p class="lede">Four questions, asked once.</p>
-  <form id="form-about" class="panel" novalidate>
-    <fieldset class="scale">
-      <legend>Years working in vulnerability management or security operations</legend>
-      <div class="options">
-        <label><input type="radio" name="years_band" value="lt_2" required><span>Less than 2</span></label>
-        <label><input type="radio" name="years_band" value="2_4"><span>2 to 4</span></label>
-        <label><input type="radio" name="years_band" value="5_9"><span>5 to 9</span></label>
-        <label><input type="radio" name="years_band" value="10_plus"><span>10 or more</span></label>
+  <div class="narrow">
+    <h1>About you</h1>
+    <p class="lede">Four quick questions, asked once.</p>
+    <form id="form-about" class="card" novalidate>
+      <fieldset class="scale">
+        <legend>Years in vulnerability management or security operations</legend>
+        <div class="options">
+          <label><input type="radio" name="years_band" value="lt_2" required><span>Less than 2</span></label>
+          <label><input type="radio" name="years_band" value="2_4"><span>2 to 4</span></label>
+          <label><input type="radio" name="years_band" value="5_9"><span>5 to 9</span></label>
+          <label><input type="radio" name="years_band" value="10_plus"><span>10 or more</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="scale">
+        <legend>Your current role</legend>
+        <div class="options">
+          <label><input type="radio" name="role_band" value="analyst" required><span>Analyst</span></label>
+          <label><input type="radio" name="role_band" value="engineer"><span>Engineer</span></label>
+          <label><input type="radio" name="role_band" value="lead"><span>Lead</span></label>
+          <label><input type="radio" name="role_band" value="manager"><span>Manager</span></label>
+        </div>
+      </fieldset>
+      <div class="two">
+        <fieldset class="scale">
+          <legend>Do you work at an MSSP?</legend>
+          <div class="options">
+            <label><input type="radio" name="works_at_mssp" value="true" required><span>Yes</span></label>
+            <label><input type="radio" name="works_at_mssp" value="false"><span>No</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="scale">
+          <legend>Have you used SSVC before?</legend>
+          <div class="options">
+            <label><input type="radio" name="used_ssvc_before" value="true" required><span>Yes</span></label>
+            <label><input type="radio" name="used_ssvc_before" value="false"><span>No</span></label>
+          </div>
+        </fieldset>
       </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>Your current role</legend>
-      <div class="options">
-        <label><input type="radio" name="role_band" value="analyst" required><span>Analyst</span></label>
-        <label><input type="radio" name="role_band" value="engineer"><span>Engineer</span></label>
-        <label><input type="radio" name="role_band" value="lead"><span>Lead</span></label>
-        <label><input type="radio" name="role_band" value="manager"><span>Manager</span></label>
-      </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>Do you work at a managed security service provider (MSSP)?</legend>
-      <div class="options">
-        <label><input type="radio" name="works_at_mssp" value="true" required><span>Yes</span></label>
-        <label><input type="radio" name="works_at_mssp" value="false"><span>No</span></label>
-      </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>Have you used SSVC (Stakeholder-Specific Vulnerability Categorization) before?</legend>
-      <div class="options">
-        <label><input type="radio" name="used_ssvc_before" value="true" required><span>Yes</span></label>
-        <label><input type="radio" name="used_ssvc_before" value="false"><span>No</span></label>
-      </div>
-    </fieldset>
-    <p class="form-error" id="about-error" role="alert" hidden></p>
-    <button type="submit" class="primary">Save and continue</button>
-  </form>
+      <p class="form-error" id="about-error" role="alert" hidden></p>
+      <button type="submit" class="primary">Save and continue</button>
+    </form>
+  </div>
 </section>
 
-<!-- 3. Instructions -->
+<!-- 3. How to rate -->
 <section class="screen" id="screen-instructions" hidden>
-  <h1>How to rate each scenario</h1>
-  <p class="lede">Each scenario describes one asset in one organisation, and one vulnerability on it, as it was known at the time. Judge it as if this organisation were your responsibility.</p>
-  <ul>
-    <li>Rate three things: the asset's <strong>System Exposure</strong>, the <strong>Human Impact</strong> if the vulnerability were exploited, and the <strong>action</strong> you would take. Then say how confident you are.</li>
-    <li>Please don't look anything up. Use only what the scenario tells you and your own experience.</li>
-    <li>Each answer is saved when you continue, and can't be changed afterwards.</li>
-    <li>The definitions below are available on every item.</li>
-  </ul>
-  <div id="definitions-home"></div>
-  <button type="button" class="primary" id="btn-begin">Begin item 1</button>
+  <div class="wide">
+    <h1>How to rate each scenario</h1>
+    <div class="steps">
+      <div class="step"><svg class="ico step-ico"><use href="#i-eye"/></svg><div><strong>Read the scenario</strong><span>One asset in one organisation, with one vulnerability on it, as it was known at the time. Treat the organisation as your responsibility.</span></div></div>
+      <div class="step"><svg class="ico step-ico"><use href="#i-check"/></svg><div><strong>Give four ratings</strong><span>System Exposure, Human Impact, the action you would take, and how confident you are.</span></div></div>
+      <div class="step"><svg class="ico step-ico"><use href="#i-lock"/></svg><div><strong>Use only what you see</strong><span>Please don't look anything up. Each answer is final once saved. You can save and exit at any time.</span></div></div>
+    </div>
+    <p class="hint"><svg class="ico"><use href="#i-book"/></svg><span>The official SSVC definitions are below, and on every item behind the <strong>Definitions</strong> button. Hover over any rating button to see its definition.</span></p>
+    <div id="definitions-home"></div>
+    <button type="button" class="primary" id="btn-begin">Begin item 1</button>
+  </div>
 </section>
 
-<!-- 4. Items -->
+<!-- 4. Items: dashboard view -->
 <section class="screen" id="screen-item" hidden>
-  <h1 id="item-title" class="item-title"></h1>
-  <div class="record" id="record"></div>
-  <details class="definitions-toggle">
-    <summary>Show the SSVC definitions</summary>
-    <div id="definitions-item"></div>
-  </details>
-  <form id="form-item" class="panel" novalidate>
-    <fieldset class="scale">
-      <legend>System Exposure</legend>
-      <div class="options">
-        <label><input type="radio" name="system_exposure" value="small" required><span>Small</span></label>
-        <label><input type="radio" name="system_exposure" value="controlled"><span>Controlled</span></label>
-        <label><input type="radio" name="system_exposure" value="open"><span>Open</span></label>
+  <div class="dash">
+    <div class="dash-facts" id="record"></div>
+    <form id="form-item" class="rate-panel" novalidate>
+      <div class="rate-head">
+        <h1 id="item-title" class="item-title"></h1>
+        <button type="button" class="ghost small" id="btn-defs"><svg class="ico"><use href="#i-book"/></svg><span>Definitions</span></button>
       </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>Human Impact</legend>
-      <div class="options">
-        <label><input type="radio" name="human_impact" value="low" required><span>Low</span></label>
-        <label><input type="radio" name="human_impact" value="medium"><span>Medium</span></label>
-        <label><input type="radio" name="human_impact" value="high"><span>High</span></label>
-        <label><input type="radio" name="human_impact" value="very_high"><span>Very high</span></label>
+      <fieldset class="scale">
+        <legend>System Exposure</legend>
+        <div class="options" data-def="System Exposure">
+          <label><input type="radio" name="system_exposure" value="small" required><span>Small</span></label>
+          <label><input type="radio" name="system_exposure" value="controlled"><span>Controlled</span></label>
+          <label><input type="radio" name="system_exposure" value="open"><span>Open</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="scale">
+        <legend>Human Impact</legend>
+        <div class="options" data-def="Human Impact">
+          <label><input type="radio" name="human_impact" value="low" required><span>Low</span></label>
+          <label><input type="radio" name="human_impact" value="medium"><span>Medium</span></label>
+          <label><input type="radio" name="human_impact" value="high"><span>High</span></label>
+          <label><input type="radio" name="human_impact" value="very_high"><span>Very high</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="scale">
+        <legend>Action</legend>
+        <div class="options" data-def="Action">
+          <label><input type="radio" name="action" value="defer" required><span>Defer</span></label>
+          <label><input type="radio" name="action" value="scheduled"><span>Scheduled</span></label>
+          <label><input type="radio" name="action" value="out_of_cycle"><span>Out-of-cycle</span></label>
+          <label><input type="radio" name="action" value="immediate"><span>Immediate</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="scale">
+        <legend>Confidence in these ratings</legend>
+        <div class="options confidence">
+          <label><input type="radio" name="confidence" value="1" required><span>1<small>guess</small></span></label>
+          <label><input type="radio" name="confidence" value="2"><span>2</span></label>
+          <label><input type="radio" name="confidence" value="3"><span>3</span></label>
+          <label><input type="radio" name="confidence" value="4"><span>4</span></label>
+          <label><input type="radio" name="confidence" value="5"><span>5<small>certain</small></span></label>
+        </div>
+      </fieldset>
+      <p class="form-error" id="item-error" role="alert" hidden></p>
+      <button type="submit" class="primary block" id="btn-item">Save and continue</button>
+    </form>
+  </div>
+
+  <div class="drawer" id="defs-drawer" hidden>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="defs-title">
+      <div class="drawer-head">
+        <h2 id="defs-title">SSVC definitions</h2>
+        <button type="button" class="ghost small" id="btn-defs-close"><svg class="ico"><use href="#i-x"/></svg><span>Close</span></button>
       </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>Action</legend>
-      <div class="options">
-        <label><input type="radio" name="action" value="defer" required><span>Defer</span></label>
-        <label><input type="radio" name="action" value="scheduled"><span>Scheduled</span></label>
-        <label><input type="radio" name="action" value="out_of_cycle"><span>Out-of-cycle</span></label>
-        <label><input type="radio" name="action" value="immediate"><span>Immediate</span></label>
-      </div>
-    </fieldset>
-    <fieldset class="scale">
-      <legend>How confident are you in these ratings?</legend>
-      <div class="options confidence">
-        <label><input type="radio" name="confidence" value="1" required><span>1<small>a guess</small></span></label>
-        <label><input type="radio" name="confidence" value="2"><span>2</span></label>
-        <label><input type="radio" name="confidence" value="3"><span>3</span></label>
-        <label><input type="radio" name="confidence" value="4"><span>4</span></label>
-        <label><input type="radio" name="confidence" value="5"><span>5<small>certain</small></span></label>
-      </div>
-    </fieldset>
-    <p class="form-error" id="item-error" role="alert" hidden></p>
-    <button type="submit" class="primary" id="btn-item">Save and continue</button>
-  </form>
+      <div id="definitions-item"></div>
+    </div>
+  </div>
 </section>
 
 <!-- 5. Thanks -->
 <section class="screen" id="screen-done" hidden>
-  <h1>Thank you. Your answers are saved.</h1>
-  <p class="lede">Your completion code:</p>
-  <p class="code" id="completion-code"></p>
-  <p>Keep this code if you might want your answers deleted. Email it to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span>. You can close this page now.</p>
+  <div class="narrow center">
+    <svg class="ico big-ico"><use href="#i-check"/></svg>
+    <h1>Thank you. Your answers are saved.</h1>
+    <p class="lede">Your completion code</p>
+    <p class="code" id="completion-code"></p>
+    <p>Keep it if you might want your answers deleted: email it to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span>. You can close this tab.</p>
+  </div>
+</section>
+
+<!-- Save and exit -->
+<section class="screen" id="screen-exit" hidden>
+  <div class="narrow center">
+    <svg class="ico big-ico"><use href="#i-exit"/></svg>
+    <h1>Your progress is saved</h1>
+    <p class="lede">Everything you have answered so far is stored. You can close this tab now.</p>
+    <div class="card left">
+      <p><strong>To continue later:</strong> open the same survey link in this same browser on this device. It will return you to where you stopped.</p>
+      <p><strong>To withdraw instead:</strong> email the code below to <a data-config-mailto="CONTACT_EMAIL"></a> by <span data-config="WITHDRAW_BY"></span>.</p>
+      <p class="code small-code" id="exit-code"></p>
+    </div>
+    <button type="button" class="primary" id="btn-resume">Continue now</button>
+  </div>
 </section>
 
 </main>

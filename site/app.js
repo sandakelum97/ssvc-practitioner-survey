@@ -43,9 +43,10 @@
   function show(name) {
     var screens = document.querySelectorAll(".screen");
     for (var i = 0; i < screens.length; i++) screens[i].hidden = screens[i].id !== "screen-" + name;
-    var inItems = name === "item";
-    $("progress").hidden = !inItems;
-    window.scrollTo(0, 0);
+    $("progress").hidden = name !== "item";
+    $("btn-exit").hidden = ["about", "instructions", "item"].indexOf(name) < 0;
+    closeDrawer();
+    try { window.scrollTo(0, 0); } catch (e) { /* not available in every environment */ }
     $("main").focus({ preventScroll: true });
   }
 
@@ -119,11 +120,68 @@
     }
   }
 
+  // Presentation only: the words of every definition are unchanged.
+  var SI_LABELS = /(Physical harm:|Operator resiliency:|System resiliency:|Environment:|Financial:|Psychological:)/;
+
+  function formatDefinitions(root) {
+    // One block per decision point (System Exposure, Human Impact, Action).
+    var defs = root.querySelector(".definitions");
+    var kids = Array.prototype.slice.call(defs.children), block = null;
+    kids.forEach(function (k) {
+      if (k.tagName === "H2") { block = el("div", "def-block"); defs.appendChild(block); }
+      if (block) block.appendChild(k);
+    });
+    // Safety Impact: show each harm type on its own line with its label in bold.
+    var dds = root.querySelectorAll(".sub-definitions dd");
+    Array.prototype.forEach.call(dds, function (dd) {
+      var text = dd.textContent;
+      if (text.indexOf("Any one or more of these conditions hold.") !== 0) return;
+      var parts = text.split(SI_LABELS);
+      dd.textContent = "";
+      dd.appendChild(document.createTextNode(parts[0].trim()));
+      for (var i = 1; i < parts.length; i += 2) {
+        dd.appendChild(document.createTextNode(" "));
+        var line = el("span", "si-part");
+        line.appendChild(el("strong", null, parts[i]));
+        line.appendChild(document.createTextNode(" " + parts[i + 1].trim()));
+        dd.appendChild(line);
+      }
+    });
+  }
+
+  function definitionMap(root) {
+    // { "System Exposure": { "Small": "...", ... }, "Human Impact": {...}, "Action": {...} }
+    var map = {};
+    Array.prototype.forEach.call(root.querySelectorAll(".def-block"), function (b) {
+      var name = b.querySelector("h2").textContent.trim(), dl = b.querySelector(":scope > dl");
+      if (!dl) return;
+      map[name] = {};
+      Array.prototype.forEach.call(dl.querySelectorAll("dt"), function (dt) {
+        var dd = dt.nextElementSibling;
+        if (dd) map[name][dt.textContent.trim()] = dd.textContent.replace(/\s+/g, " ").trim();
+      });
+    });
+    return map;
+  }
+
   function placeDefinitions() {
     var t = document.getElementById("definitions");
-    $("definitions-home").appendChild(t.content.cloneNode(true));
-    $("definitions-item").appendChild(t.content.cloneNode(true));
+    [$("definitions-home"), $("definitions-item")].forEach(function (host) {
+      host.appendChild(t.content.cloneNode(true));
+      formatDefinitions(host);
+    });
+    var map = definitionMap($("definitions-home"));
+    Array.prototype.forEach.call(document.querySelectorAll(".options[data-def]"), function (g) {
+      var defs = map[g.getAttribute("data-def")] || {};
+      Array.prototype.forEach.call(g.querySelectorAll("label"), function (lab) {
+        var d = defs[lab.textContent.trim()];
+        if (d) lab.title = d;
+      });
+    });
   }
+
+  function openDrawer() { $("defs-drawer").hidden = false; $("btn-defs-close").focus(); }
+  function closeDrawer() { var d = $("defs-drawer"); if (d) d.hidden = true; }
 
   // --------------------------------------------------------- the record
   function label(field, value) {
@@ -134,25 +192,40 @@
     return unit ? value + " " + unit : String(value);
   }
 
-  function factList(title, rows) {
-    var sec = el("section", "record-part");
-    sec.appendChild(el("h2", null, title));
+  function icon(id) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "ico"); svg.setAttribute("aria-hidden", "true");
+    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", "#" + id);
+    svg.appendChild(use);
+    return svg;
+  }
+
+  function panel(cls, iconId, title, rows) {
+    var sec = el("section", "panel " + cls);
+    var h = el("h2"); h.appendChild(icon(iconId)); h.appendChild(el("span", null, title));
+    sec.appendChild(h);
+    if (rows && rows.length) sec.appendChild(factRows(rows));
+    return sec;
+  }
+
+  function factRows(rows) {
     var dl = el("dl");
     rows.forEach(function (r) {
       dl.appendChild(el("dt", null, labels.fields[r[0]]));
-      var dd = el("dd", r[2] || null, r[1]);
-      dl.appendChild(dd);
+      dl.appendChild(el("dd", r[2] || null, r[1]));
     });
-    sec.appendChild(dl);
-    return sec;
+    return dl;
   }
 
   function renderRecord(s) {
     var o = s.organisation, a = s.asset, v = s.vulnerability;
     var box = $("record");
     box.textContent = "";
+    var colA = el("div", "dash-col"), colB = el("div", "dash-col");
+    box.appendChild(colA); box.appendChild(colB);
 
-    box.appendChild(factList("The organisation", [
+    colA.appendChild(panel("org", "i-org", "Organisation", [
       ["organisation.sector", label("organisation.sector", o.sector)],
       ["organisation.employee_count", o.employee_count],
       ["organisation.regulatory", label("organisation.regulatory", o.regulatory)],
@@ -162,7 +235,7 @@
       ["organisation.unmanaged_endpoint_estimate", o.unmanaged_endpoint_estimate]
     ]));
 
-    box.appendChild(factList("The asset", [
+    colA.appendChild(panel("asset", "i-asset", "Asset", [
       ["asset.asset_class", label("asset.asset_class", a.asset_class)],
       ["asset.operating_system", label("asset.operating_system", a.operating_system)],
       ["asset.business_function", label("asset.business_function", a.business_function)],
@@ -174,7 +247,7 @@
       ["asset.managed_by_mssp", label("asset.managed_by_mssp", a.managed_by_mssp)]
     ]));
 
-    box.appendChild(factList("Network position", [
+    colB.appendChild(panel("net", "i-net", "Network position", [
       ["asset.network_zone", label("asset.network_zone", a.network_zone)],
       ["asset.has_public_ip", label("asset.has_public_ip", a.has_public_ip)],
       ["asset.listening_ports", a.listening_ports.length ? a.listening_ports.join(", ") : "None"],
@@ -188,7 +261,7 @@
     ]));
 
     s.software.forEach(function (sw) {
-      box.appendChild(factList("The vulnerable software", [
+      colB.appendChild(panel("soft", "i-soft", "Vulnerable software", [
         ["software.vendor", label("software.vendor", sw.vendor)],
         ["software.product", label("software.product", sw.product)],
         ["software.version", label("software.version", sw.version)],
@@ -197,30 +270,31 @@
       ]));
     });
 
-    var vrows = [
-      ["vulnerability.cvss_base_score", v.cvss_base_score],
-      ["vulnerability.cvss_vector", v.cvss_vector, "mono"]
-    ];
-    var vuln = factList("The vulnerability, as known at the time", vrows);
+    var vuln = panel("vuln", "i-vuln", "Vulnerability, as known at the time");
+    var score = el("div", "score");
+    score.appendChild(el("strong", null, v.cvss_base_score));
+    score.appendChild(el("span", null, labels.fields["vulnerability.cvss_base_score"]));
+    vuln.appendChild(score);
+    vuln.appendChild(factRows([["vulnerability.cvss_vector", v.cvss_vector, "mono"]]));
+    var cisa = el("p", "cisa"); cisa.appendChild(icon("i-shield")); cisa.appendChild(el("span", null, "CISA assessment"));
+    vuln.appendChild(cisa);
     if (v.cisa_assessment_published) {
-      var dl = vuln.querySelector("dl");
-      [["vulnerability.exploitation", v.exploitation],
-       ["vulnerability.automatable", v.automatable],
-       ["vulnerability.technical_impact", v.technical_impact]].forEach(function (r) {
-        dl.appendChild(el("dt", null, "CISA: " + labels.fields[r[0]]));
-        dl.appendChild(el("dd", null, label(r[0], r[1])));
-      });
+      vuln.appendChild(factRows([
+        ["vulnerability.exploitation", label("vulnerability.exploitation", v.exploitation)],
+        ["vulnerability.automatable", label("vulnerability.automatable", v.automatable)],
+        ["vulnerability.technical_impact", label("vulnerability.technical_impact", v.technical_impact)]
+      ]));
     } else {
       vuln.appendChild(el("p", "no-cisa", labels.no_cisa_record));
     }
-    box.appendChild(vuln);
+    colB.appendChild(vuln);
   }
 
   function renderItem() {
     var pos = state.next;
     var s = scenarios[state.order[pos - 1]];
     $("item-title").textContent = "Item " + pos + " of " + ORDER.N_ITEMS;
-    $("progress-text").textContent = (pos - 1) + " of " + ORDER.N_ITEMS + " saved";
+    $("progress-text").textContent = "Item " + pos + " of " + ORDER.N_ITEMS;
     $("progress-fill").style.width = ((pos - 1) / ORDER.N_ITEMS * 100) + "%";
     renderRecord(s);
     $("form-item").reset();
@@ -282,6 +356,18 @@
       showError("about-error", saveErrorText(e));
     }).then(function () { busy(f, false); });
   });
+
+  $("btn-exit").addEventListener("click", function () {
+    // Nothing is deleted or changed: answers already saved stay saved, and
+    // the stored order and position let the rater resume on this device.
+    if (state && state.sessionId) $("exit-code").textContent = completionCode(state.sessionId);
+    show("exit");
+  });
+  $("btn-resume").addEventListener("click", function () { route(); });
+  $("btn-defs").addEventListener("click", openDrawer);
+  $("btn-defs-close").addEventListener("click", closeDrawer);
+  $("defs-drawer").addEventListener("click", function (ev) { if (ev.target === ev.currentTarget) closeDrawer(); });
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") closeDrawer(); });
 
   $("btn-begin").addEventListener("click", function () {
     state.stage = "items"; save(); route();
