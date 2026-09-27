@@ -7,13 +7,13 @@
 // (or the legacy service_role key) here.
 window.SURVEY_CONFIG = {
   SUPABASE_URL: "https://atwlzdbaspburcgrfxnz.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY: "PASTE publishable key",
+  SUPABASE_PUBLISHABLE_KEY: "sb_publishable_rslYtrFPqFr_IvhYT9a3sA_tRrnIzJU",
   SURVEY_VERSION: "v1",
 
   RESEARCHER: "Tharaka Dissanayaka",
   SUPERVISOR: "Prof. Ruvan Abeysekara",
   PROGRAMME: "eMSc Information Security, CICRA Campus / Asia e University",
-  CONTACT_EMAIL: "PASTE contact email",
+  CONTACT_EMAIL: "c25110004@cicra.edu.lk",
   DATA_REGION: "South Asia (Mumbai, India)",
 
   CLOSES: "18 October 2026",
