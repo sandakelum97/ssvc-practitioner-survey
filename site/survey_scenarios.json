@@ -1,0 +1,1068 @@
+{
+  "seed": 20260928,
+  "declared_at": "A38, A39",
+  "repeat_scenarios": [
+    6,
+    2,
+    12
+  ],
+  "scenarios": [
+    {
+      "scenario": 1,
+      "organisation": {
+        "sector": "education",
+        "employee_count": 480,
+        "regulatory": "student data protection",
+        "security_posture": "basic",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 2000
+      },
+      "asset": {
+        "asset_class": "hypervisor",
+        "operating_system": "esxi",
+        "managed_by_mssp": true,
+        "network_zone": "management",
+        "has_public_ip": false,
+        "listening_ports": [
+          443,
+          902
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": true,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "virtualisation_platform",
+        "user_count": 352,
+        "data_classification": "internal",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 48,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "vmware",
+          "product": "vcenter_server",
+          "version": "7.0",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 9.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 2,
+      "organisation": {
+        "sector": "financial_services",
+        "employee_count": 340,
+        "regulatory": "PCI-DSS, local banking regulation",
+        "security_posture": "mature",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 15
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": true,
+        "network_zone": "cloud_public",
+        "has_public_ip": true,
+        "listening_ports": [
+          22,
+          80,
+          443
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": true,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "core_transaction_processing",
+        "user_count": 165,
+        "data_classification": "restricted",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 2,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 8.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 3,
+      "organisation": {
+        "sector": "utilities",
+        "employee_count": 420,
+        "regulatory": "critical infrastructure protection, grid compliance",
+        "security_posture": "mature",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 30
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": true,
+        "network_zone": "management",
+        "has_public_ip": false,
+        "listening_ports": [
+          25,
+          143,
+          993
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": true,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "file_and_print",
+        "user_count": 304,
+        "data_classification": "internal",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 4,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "debian",
+          "product": "debian_linux",
+          "version": "11.0",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 8.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 4,
+      "organisation": {
+        "sector": "utilities",
+        "employee_count": 420,
+        "regulatory": "critical infrastructure protection, grid compliance",
+        "security_posture": "mature",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 30
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2012",
+        "managed_by_mssp": true,
+        "network_zone": "internal_server",
+        "has_public_ip": false,
+        "listening_ports": [
+          22,
+          80,
+          443
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "reporting_and_analytics",
+        "user_count": 370,
+        "data_classification": "public",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 48,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2012",
+          "version": "r2",
+          "component_role": "os",
+          "support_status": "end_of_support"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "poc",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 5,
+      "organisation": {
+        "sector": "professional_services",
+        "employee_count": 95,
+        "regulatory": "client confidentiality",
+        "security_posture": "mature",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 25
+      },
+      "asset": {
+        "asset_class": "workstation",
+        "operating_system": "windows_11",
+        "managed_by_mssp": false,
+        "network_zone": "internal_user",
+        "has_public_ip": false,
+        "listening_ports": [
+          445
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": true,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "finance_operations",
+        "user_count": 1,
+        "data_classification": "internal",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 24,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "google",
+          "product": "chrome",
+          "version": "112.0.5615.49",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.3,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 6,
+      "organisation": {
+        "sector": "education",
+        "employee_count": 480,
+        "regulatory": "student data protection",
+        "security_posture": "basic",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 2000
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": true,
+        "network_zone": "cloud_public",
+        "has_public_ip": true,
+        "listening_ports": [
+          25,
+          143,
+          993
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": true,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "backup",
+        "user_count": 233,
+        "data_classification": "public",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 4,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 7,
+      "organisation": {
+        "sector": "ecommerce_retail",
+        "employee_count": 180,
+        "regulatory": "PCI-DSS",
+        "security_posture": "developing",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 120
+      },
+      "asset": {
+        "asset_class": "byod_endpoint",
+        "operating_system": "macos",
+        "managed_by_mssp": false,
+        "network_zone": "guest",
+        "has_public_ip": false,
+        "listening_ports": [],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": true,
+        "business_function": "personal_device",
+        "user_count": 1,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 48,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "apple",
+          "product": "macos",
+          "version": "12.0",
+          "component_role": "os",
+          "support_status": "extended"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.5,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "partial"
+      }
+    },
+    {
+      "scenario": 8,
+      "organisation": {
+        "sector": "financial_services",
+        "employee_count": 340,
+        "regulatory": "PCI-DSS, local banking regulation",
+        "security_posture": "mature",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 15
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": false,
+        "network_zone": "cloud_public",
+        "has_public_ip": true,
+        "listening_ports": [
+          389,
+          636
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": true,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "core_transaction_processing",
+        "user_count": 305,
+        "data_classification": "restricted",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 0,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "debian",
+          "product": "debian_linux",
+          "version": "11.0",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": false,
+        "exploitation": null,
+        "automatable": null,
+        "technical_impact": null
+      }
+    },
+    {
+      "scenario": 9,
+      "organisation": {
+        "sector": "healthcare",
+        "employee_count": 260,
+        "regulatory": "patient data protection, clinical safety",
+        "security_posture": "developing",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 250
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": true,
+        "network_zone": "management",
+        "has_public_ip": false,
+        "listening_ports": [
+          443,
+          1433
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": true,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "development_test",
+        "user_count": 81,
+        "data_classification": "confidential",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 48,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "debian",
+          "product": "debian_linux",
+          "version": "11.0",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 10,
+      "organisation": {
+        "sector": "education",
+        "employee_count": 480,
+        "regulatory": "student data protection",
+        "security_posture": "basic",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 2000
+      },
+      "asset": {
+        "asset_class": "workstation",
+        "operating_system": "fedora",
+        "managed_by_mssp": true,
+        "network_zone": "internal_user",
+        "has_public_ip": false,
+        "listening_ports": [
+          3389
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": true,
+        "business_function": "student_lab",
+        "user_count": 1,
+        "data_classification": "confidential",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 72,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "mozilla",
+          "product": "firefox",
+          "version": "111.0",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 4.3,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "partial"
+      }
+    },
+    {
+      "scenario": 11,
+      "organisation": {
+        "sector": "ecommerce_retail",
+        "employee_count": 180,
+        "regulatory": "PCI-DSS",
+        "security_posture": "developing",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 120
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": true,
+        "network_zone": "dmz",
+        "has_public_ip": true,
+        "listening_ports": [
+          389,
+          636
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": true,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "core_transaction_processing",
+        "user_count": 93,
+        "data_classification": "internal",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 1,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.5,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "yes",
+        "technical_impact": "partial"
+      }
+    },
+    {
+      "scenario": 12,
+      "organisation": {
+        "sector": "financial_services",
+        "employee_count": 340,
+        "regulatory": "PCI-DSS, local banking regulation",
+        "security_posture": "mature",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 15
+      },
+      "asset": {
+        "asset_class": "workstation",
+        "operating_system": "windows_10",
+        "managed_by_mssp": false,
+        "network_zone": "internal_user",
+        "has_public_ip": false,
+        "listening_ports": [
+          445
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": true,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "reception",
+        "user_count": 1,
+        "data_classification": "confidential",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 72,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_10",
+          "version": "22h2",
+          "component_role": "os",
+          "support_status": "extended"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": false,
+        "exploitation": null,
+        "automatable": null,
+        "technical_impact": null
+      }
+    },
+    {
+      "scenario": 13,
+      "organisation": {
+        "sector": "manufacturing",
+        "employee_count": 610,
+        "regulatory": "none specific",
+        "security_posture": "developing",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 180
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": true,
+        "network_zone": "internal_server",
+        "has_public_ip": false,
+        "listening_ports": [
+          389,
+          636
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "internal_web_application",
+        "user_count": 384,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 24,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "debian",
+          "product": "debian_linux",
+          "version": "10.0",
+          "component_role": "os",
+          "support_status": "end_of_support"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 5.5,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "partial"
+      }
+    },
+    {
+      "scenario": 14,
+      "organisation": {
+        "sector": "financial_services",
+        "employee_count": 340,
+        "regulatory": "PCI-DSS, local banking regulation",
+        "security_posture": "mature",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "strict",
+        "unmanaged_endpoint_estimate": 15
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": false,
+        "network_zone": "cloud_public",
+        "has_public_ip": true,
+        "listening_ports": [
+          389,
+          636
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": true,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "directory_services",
+        "user_count": 333,
+        "data_classification": "confidential",
+        "has_redundancy": true,
+        "downtime_tolerance_hours": 0,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "debian",
+          "product": "debian_linux",
+          "version": "11.0",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": false,
+        "exploitation": null,
+        "automatable": null,
+        "technical_impact": null
+      }
+    },
+    {
+      "scenario": 15,
+      "organisation": {
+        "sector": "healthcare",
+        "employee_count": 260,
+        "regulatory": "patient data protection, clinical safety",
+        "security_posture": "developing",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 250
+      },
+      "asset": {
+        "asset_class": "workstation",
+        "operating_system": "windows_10",
+        "managed_by_mssp": true,
+        "network_zone": "internal_user",
+        "has_public_ip": false,
+        "listening_ports": [
+          445
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "clinical_use",
+        "user_count": 1,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 72,
+        "safety_relevant": true
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "office",
+          "version": "2019",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 16,
+      "organisation": {
+        "sector": "ecommerce_retail",
+        "employee_count": 180,
+        "regulatory": "PCI-DSS",
+        "security_posture": "developing",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 120
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": true,
+        "network_zone": "internal_server",
+        "has_public_ip": false,
+        "listening_ports": [
+          80,
+          443
+        ],
+        "bound_all_interfaces": false,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": true,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "core_transaction_processing",
+        "user_count": 43,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 0,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 6.7,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 17,
+      "organisation": {
+        "sector": "education",
+        "employee_count": 480,
+        "regulatory": "student data protection",
+        "security_posture": "basic",
+        "remote_access": "ssl_vpn",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 2000
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": true,
+        "network_zone": "cloud_public",
+        "has_public_ip": true,
+        "listening_ports": [
+          80,
+          443
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": true,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": false,
+        "reachable_from_guest_vlan": false,
+        "business_function": "backup",
+        "user_count": 299,
+        "data_classification": "confidential",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 48,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 8.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 18,
+      "organisation": {
+        "sector": "manufacturing",
+        "employee_count": 610,
+        "regulatory": "none specific",
+        "security_posture": "developing",
+        "remote_access": "ipsec_site_to_site",
+        "network_segmentation": "flat",
+        "unmanaged_endpoint_estimate": 180
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "debian_linux",
+        "managed_by_mssp": true,
+        "network_zone": "management",
+        "has_public_ip": false,
+        "listening_ports": [
+          22,
+          80,
+          443
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": false,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "core_transaction_processing",
+        "user_count": 349,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 0,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "apache",
+          "product": "http_server",
+          "version": "2.4.54",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 9.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "yes",
+        "technical_impact": "total"
+      }
+    },
+    {
+      "scenario": 19,
+      "organisation": {
+        "sector": "professional_services",
+        "employee_count": 95,
+        "regulatory": "client confidentiality",
+        "security_posture": "mature",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 25
+      },
+      "asset": {
+        "asset_class": "server",
+        "operating_system": "windows_server_2022",
+        "managed_by_mssp": false,
+        "network_zone": "internal_server",
+        "has_public_ip": false,
+        "listening_ports": [
+          443,
+          1433
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": true,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "directory_services",
+        "user_count": 81,
+        "data_classification": "public",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 2,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "microsoft",
+          "product": "windows_server_2022",
+          "version": "-",
+          "component_role": "os",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 5.4,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "partial"
+      }
+    },
+    {
+      "scenario": 20,
+      "organisation": {
+        "sector": "professional_services",
+        "employee_count": 95,
+        "regulatory": "client confidentiality",
+        "security_posture": "mature",
+        "remote_access": "sase",
+        "network_segmentation": "partial",
+        "unmanaged_endpoint_estimate": 25
+      },
+      "asset": {
+        "asset_class": "workstation",
+        "operating_system": "windows_10",
+        "managed_by_mssp": true,
+        "network_zone": "internal_user",
+        "has_public_ip": false,
+        "listening_ports": [
+          3389
+        ],
+        "bound_all_interfaces": true,
+        "seen_in_external_scan": false,
+        "requires_auth": true,
+        "behind_vpn_only": false,
+        "behind_sase": true,
+        "reachable_from_user_vlan": true,
+        "reachable_from_guest_vlan": false,
+        "business_function": "finance_operations",
+        "user_count": 1,
+        "data_classification": "internal",
+        "has_redundancy": false,
+        "downtime_tolerance_hours": 72,
+        "safety_relevant": false
+      },
+      "software": [
+        {
+          "vendor": "mozilla",
+          "product": "firefox",
+          "version": "111.0",
+          "component_role": "application",
+          "support_status": "supported"
+        }
+      ],
+      "vulnerability": {
+        "cvss_base_score": 9.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "cisa_assessment_published": true,
+        "exploitation": "none",
+        "automatable": "no",
+        "technical_impact": "partial"
+      }
+    }
+  ]
+}

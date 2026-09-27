@@ -1,0 +1,170 @@
+{
+ "_about": "Display labels (A39.4). Each stored value is shown with a readable label. No value is changed, merged or omitted. Values not listed here (numbers, regulatory text, CVSS vectors, most versions) are shown exactly as stored.",
+ "fields": {
+  "organisation.sector": "Sector",
+  "organisation.employee_count": "Employees",
+  "organisation.regulatory": "Regulatory context",
+  "organisation.security_posture": "Security posture",
+  "organisation.remote_access": "Remote access",
+  "organisation.network_segmentation": "Network segmentation",
+  "organisation.unmanaged_endpoint_estimate": "Unmanaged endpoints (estimate)",
+  "asset.asset_class": "Asset class",
+  "asset.operating_system": "Operating system",
+  "asset.managed_by_mssp": "Managed by the MSSP",
+  "asset.network_zone": "Network zone",
+  "asset.has_public_ip": "Public IP address",
+  "asset.listening_ports": "Listening ports",
+  "asset.bound_all_interfaces": "Services bound to all interfaces",
+  "asset.seen_in_external_scan": "Seen in external scan",
+  "asset.requires_auth": "Requires authentication",
+  "asset.behind_vpn_only": "Reachable only through VPN",
+  "asset.behind_sase": "Behind SASE",
+  "asset.reachable_from_user_vlan": "Reachable from user VLAN",
+  "asset.reachable_from_guest_vlan": "Reachable from guest VLAN",
+  "asset.business_function": "Business function",
+  "asset.user_count": "Users",
+  "asset.data_classification": "Data classification",
+  "asset.has_redundancy": "Redundancy",
+  "asset.downtime_tolerance_hours": "Downtime tolerance",
+  "asset.safety_relevant": "Safety relevant",
+  "software.vendor": "Vendor",
+  "software.product": "Product",
+  "software.version": "Version",
+  "software.component_role": "Component role",
+  "software.support_status": "Support status",
+  "vulnerability.cvss_base_score": "CVSS v3.1 base score",
+  "vulnerability.cvss_vector": "CVSS v3.1 vector",
+  "vulnerability.exploitation": "Exploitation",
+  "vulnerability.automatable": "Automatable",
+  "vulnerability.technical_impact": "Technical Impact"
+ },
+ "values": {
+  "boolean": {
+   "true": "Yes",
+   "false": "No"
+  },
+  "organisation.sector": {
+   "ecommerce_retail": "E-commerce and retail",
+   "education": "Education",
+   "financial_services": "Financial services",
+   "healthcare": "Healthcare",
+   "manufacturing": "Manufacturing",
+   "professional_services": "Professional services",
+   "utilities": "Utilities"
+  },
+  "organisation.regulatory": {
+   "none specific": "None specific"
+  },
+  "organisation.security_posture": {
+   "basic": "Basic",
+   "developing": "Developing",
+   "mature": "Mature"
+  },
+  "organisation.remote_access": {
+   "ipsec_site_to_site": "IPsec site-to-site",
+   "sase": "SASE",
+   "ssl_vpn": "SSL VPN"
+  },
+  "organisation.network_segmentation": {
+   "flat": "Flat",
+   "partial": "Partial",
+   "strict": "Strict"
+  },
+  "asset.asset_class": {
+   "byod_endpoint": "BYOD endpoint",
+   "hypervisor": "Hypervisor",
+   "server": "Server",
+   "workstation": "Workstation"
+  },
+  "asset.operating_system": {
+   "debian_linux": "Debian Linux",
+   "esxi": "ESXi",
+   "fedora": "Fedora",
+   "macos": "macOS",
+   "windows_10": "Windows 10",
+   "windows_11": "Windows 11",
+   "windows_server_2012": "Windows Server 2012",
+   "windows_server_2022": "Windows Server 2022"
+  },
+  "asset.network_zone": {
+   "cloud_public": "Public cloud",
+   "dmz": "DMZ",
+   "guest": "Guest network",
+   "internal_server": "Internal server network",
+   "internal_user": "Internal user network",
+   "management": "Management network"
+  },
+  "asset.business_function": {
+   "backup": "Backup",
+   "clinical_use": "Clinical use",
+   "core_transaction_processing": "Core transaction processing",
+   "development_test": "Development and test",
+   "directory_services": "Directory services",
+   "file_and_print": "File and print",
+   "finance_operations": "Finance operations",
+   "internal_web_application": "Internal web application",
+   "personal_device": "Personal device",
+   "reception": "Reception",
+   "reporting_and_analytics": "Reporting and analytics",
+   "student_lab": "Student lab",
+   "virtualisation_platform": "Virtualisation platform"
+  },
+  "asset.data_classification": {
+   "confidential": "Confidential",
+   "internal": "Internal",
+   "public": "Public",
+   "restricted": "Restricted"
+  },
+  "software.vendor": {
+   "apache": "Apache",
+   "apple": "Apple",
+   "debian": "Debian",
+   "google": "Google",
+   "microsoft": "Microsoft",
+   "mozilla": "Mozilla",
+   "vmware": "VMware"
+  },
+  "software.product": {
+   "chrome": "Chrome",
+   "debian_linux": "Debian Linux",
+   "firefox": "Firefox",
+   "http_server": "HTTP Server",
+   "macos": "macOS",
+   "office": "Office",
+   "vcenter_server": "vCenter Server",
+   "windows_10": "Windows 10",
+   "windows_server_2012": "Windows Server 2012",
+   "windows_server_2022": "Windows Server 2022"
+  },
+  "software.version": {
+   "-": "version not specified",
+   "22h2": "22H2",
+   "r2": "R2"
+  },
+  "software.component_role": {
+   "application": "Application",
+   "os": "Operating system"
+  },
+  "software.support_status": {
+   "end_of_support": "End of support",
+   "extended": "Extended support",
+   "supported": "Supported"
+  },
+  "vulnerability.exploitation": {
+   "none": "None",
+   "poc": "Public PoC"
+  },
+  "vulnerability.automatable": {
+   "no": "No",
+   "yes": "Yes"
+  },
+  "vulnerability.technical_impact": {
+   "partial": "Partial",
+   "total": "Total"
+  }
+ },
+ "units": {
+  "asset.downtime_tolerance_hours": "hours"
+ },
+ "no_cisa_record": "No CISA assessment published yet"
+}
