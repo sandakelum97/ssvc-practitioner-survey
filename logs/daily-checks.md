@@ -9,3 +9,4 @@ committed and tagged (A38.7).
 | --- | --- | --- | --- | ---: | ---: | ---: | --- |
 | 2026-09-27 | 18:49 | Active | Yes (setup test) | 0 | 0 | 0 | Before launch. Test rows deleted (A40.11). |
 | 2026-09-28 | Evening | Active | Yes | 1 | 0 | 0 | Survey opened without the pilot (A41): LinkedIn post and two WhatsApp invitations, about 09:20. First real session (consent only) kept, not analysed. |
+| 2026-09-29 | Evening | Active | Yes | 4 | 3 | 3 | Invitations sent: not recorded today. A per-session listing (answer counts, repeats, years band; no ratings) was viewed, beyond the totals-only practice of A42.4; from 30 Sep, totals only. |
