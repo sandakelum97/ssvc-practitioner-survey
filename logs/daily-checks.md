@@ -10,3 +10,6 @@ committed and tagged (A38.7).
 | 2026-09-27 | 18:49 | Active | Yes (setup test) | 0 | 0 | 0 | Before launch. Test rows deleted (A40.11). |
 | 2026-09-28 | Evening | Active | Yes | 1 | 0 | 0 | Survey opened without the pilot (A41): LinkedIn post and two WhatsApp invitations, about 09:20. First real session (consent only) kept, not analysed. |
 | 2026-09-29 | Evening | Active | Yes | 4 | 3 | 3 | Invitations sent: not recorded today. A per-session listing (answer counts, repeats, years band; no ratings) was viewed, beyond the totals-only practice of A42.4; from 30 Sep, totals only. |
+| 2026-09-30 | Not checked | — | No | — | — | — | Daily check missed (E48, A43). |
+| 2026-10-01 | Not checked | — | No | — | — | — | Daily check missed (E48, A43). |
+| 2026-10-02 | Evening | Active | Not recorded | 30 | 26 | 29 | About 80 invitations sent in total (Subnet colleagues, with written approval, and professional connections). 26 screened completions: A38.8's stop at 12 was passed unnoticed (E48). Close fixed at 23:59 Sri Lanka time, 9 Oct 2026 (A43). |

@@ -93,7 +93,7 @@ logs/                    Session logs, and daily checks while the survey is live
 
 ## While the survey is live
 
-Every day until it closes (18 October 2026, or 12 screened raters, A38.8):
+Every day until it closes at 23:59 Sri Lanka time on 9 October 2026 (A43):
 
 1. Open the Supabase dashboard and confirm `ssvc-survey` is **not paused**.
    If it is, restore it: data is kept.
