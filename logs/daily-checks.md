@@ -13,3 +13,11 @@ committed and tagged (A38.7).
 | 2026-09-30 | Not checked | — | No | — | — | — | Daily check missed (E48, A43). |
 | 2026-10-01 | Not checked | — | No | — | — | — | Daily check missed (E48, A43). |
 | 2026-10-02 | Evening | Active | Not recorded | 30 | 26 | 29 | About 80 invitations sent in total (Subnet colleagues, with written approval, and professional connections). 26 screened completions: A38.8's stop at 12 was passed unnoticed (E48). Close fixed at 23:59 Sri Lanka time, 9 Oct 2026 (A43). |
+| 2026-10-03 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-04 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-05 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-06 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-07 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-08 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-09 | Not checked | — | No | — | — | — | Not monitored after the target was exceeded; survey left open to the fixed close (A43, A44.4). |
+| 2026-10-10 | About 11:25 | Active | No | 30 | 26 | 29 | 0 sessions started after 23:59, 9 Oct. Both closing steps run now: step 1 late, step 2 early, no session affected (A44, E49). Survey closed. |
